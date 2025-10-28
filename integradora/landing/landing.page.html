@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>PrimerPaso — Conectando estudiantes y empresas</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <header class="lp-header">
+        <style>
+            /* Dropdown styles (kept local to header) */
+            .lp-header .container { display:flex; align-items:center; gap:1rem; }
+            .brand h1 { margin:0; font-size:1.25rem; }
+            .lp-nav { display:flex; align-items:center; gap:0.75rem; width:100%; }
+            .nav-links { display:flex; gap:0.75rem; list-style:none; margin:0; padding:0; align-items:center; }
+            .nav-item { position:relative; }
+            .nav-item > a { display:inline-block; padding:0.5rem 0.6rem; text-decoration:none; color:inherit; }
+            .dropdown {
+                position:absolute;
+                left:0;
+                top:calc(100% + 6px);
+                background:#fff;
+                border-radius:6px;
+                box-shadow:0 8px 20px rgba(10,10,10,0.08);
+                min-width:200px;
+                padding:0.35rem 0;
+                opacity:0;
+                transform:translateY(6px);
+                visibility:hidden;
+                transition:opacity .18s ease, transform .18s ease, visibility .18s;
+                z-index:40;
+            }
+            .dropdown a {
+                display:block;
+                padding:0.5rem 0.9rem;
+                color:#111;
+                text-decoration:none;
+                font-size:0.95rem;
+            }
+            .dropdown a:hover { background:#f5f5f7; }
+            /* Show on hover / keyboard focus */
+            .nav-item:hover .dropdown,
+            .nav-item:focus-within .dropdown,
+            .nav-item.open .dropdown {
+                opacity:1;
+                transform:none;
+                visibility:visible;
+            }
+            /* Small responsiveness: hide inline nav on very small screens (you can replace with a proper mobile menu) */
+            @media (max-width:640px) {
+                .nav-links { display:none; }
+                .lp-nav .btn.primary { margin-left:auto; }
+            }
+        </style>
+
+        <div class="container">
+            <div class="brand">
+                <h1>Primer<span>Paso.com</span></h1>
+                <p class="tag">Conectando talento joven con oportunidades reales</p>
+            </div>
+
+            <nav class="lp-nav" aria-label="Navegación principal">
+                <ul class="nav-links">
+                    <li class="nav-item">
+                        <a href="#mision" aria-haspopup="true" aria-expanded="false">Para Estudiantes ▾</a>
+                        <div class="dropdown" role="menu" aria-label="Estudiantes">
+                            <a href="#mision#que-hacemos" role="menuitem">Busca Ofertas</a>
+                            <a href="#mision#alianzas" role="menuitem">Mejora tu CV</a>
+                            <a href="#mision#impacto" role="menuitem">Consejos Rápidos</a>
+                        </div>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#especializacion" aria-haspopup="true" aria-expanded="false">Para Empresas ▾</a>
+                        <div class="dropdown" role="menu" aria-label="Empresas">
+                            <a href="#especializacion#frontend" role="menuitem">Publica tus vacantes</a>
+                            <a href="#especializacion#data" role="menuitem">Encuentra talento</a>
+                        </div>
+                    </li>
+                </ul>
+
+                <!-- Botón de login separado y alineado a la derecha -->
+                <a class="btn primary" href="../login/login.html" style="margin-left:auto; align-self:center;">
+                    Inicia sesión
+                </a>
+            </nav>
+        </div>
+
+        <script>
+            // Habilita apertura por toque/clic en dispositivos sin hover y mejora accesibilidad.
+            (function(){
+                const navItems = document.querySelectorAll('.lp-header .nav-item');
+                const isHoverCapable = window.matchMedia('(hover: hover)').matches;
+
+                navItems.forEach(item => {
+                    const trigger = item.querySelector(':scope > a');
+                    const dropdown = item.querySelector(':scope > .dropdown');
+
+                    if (!dropdown) return;
+
+                    // Update aria-expanded on hover/focus
+                    item.addEventListener('mouseenter', () => { if (isHoverCapable) trigger.setAttribute('aria-expanded','true'); });
+                    item.addEventListener('mouseleave', () => { if (isHoverCapable) trigger.setAttribute('aria-expanded','false'); });
+                    item.addEventListener('focusin', () => trigger.setAttribute('aria-expanded','true'));
+                    item.addEventListener('focusout', () => trigger.setAttribute('aria-expanded','false'));
+
+                    // On touch devices: toggle open class when tapping the parent link
+                    trigger.addEventListener('click', (e) => {
+                        if (!isHoverCapable) {
+                            // If link has a hash target and user wants navigation, allow second tap to follow the link.
+                            e.preventDefault();
+                            const isOpen = item.classList.toggle('open');
+                            trigger.setAttribute('aria-expanded', String(!!isOpen));
+                        }
+                    });
+                });
+
+                // Close open dropdowns when tapping outside (mobile)
+                document.addEventListener('click', (e) => {
+                    if (isHoverCapable) return;
+                    if (!e.target.closest('.lp-header')) {
+                        document.querySelectorAll('.lp-header .nav-item.open').forEach(i => {
+                            i.classList.remove('open');
+                            const a = i.querySelector(':scope > a');
+                            if (a) a.setAttribute('aria-expanded','false');
+                        });
+                    }
+                });
+            })();
+        </script>
+    </header>
+
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-left">
+          <h2>Tu primer paso hacia una carrera profesional exitosa</h2>
+          <p class="lead">En PrimerPaso conectamos a estudiantes y recién titulados con empresas que buscan talento fresco, preparado y con ganas de crecer. Facilitamos prácticas, empleos y programas de formación con convenios reales.</p>
+          <div class="cta-row">
+            <a class="btn cta warm" href="#especializacion">Explora oportunidades</a>
+            <a class="btn cool" href="#empresas">Publica tus vacantes</a>
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="card visual-card">
+            <h3>Encuentra prácticas, becas y empleos</h3>
+            <p class="muted">Filtra por área, modalidad y duración. Plataforma pensada para estudiantes.</p>
+            <div class="search-mock">
+              <input placeholder="Busca: Frontend, Marketing, Data..." />
+              <button class="btn warm">Buscar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <main>
+      <section id="mision" class="section light">
+        <div class="container">
+          <h2>Nuestra misión</h2>
+          <p>Empoderar a estudiantes y recién graduados para entrar al mercado laboral con confianza, y brindar a las empresas acceso a talento joven, formado y motivado. Trabajamos con universidades y centros de formación para cerrar la brecha entre estudio y empleo.</p>
+        </div>
+      </section>
+
+      <section id="especializacion" class="section">
+        <div class="container">
+          <h2>Áreas de especialización</h2>
+          <div class="grid-areas">
+            <article class="card area warm">
+              <h3>Frontend & UX</h3>
+              <p>Diseño de interfaces, accesibilidad y desarrollo web moderno.</p>
+            </article>
+            <article class="card area warm-2">
+              <h3>Data Science</h3>
+              <p>Analítica, visualización y modelado para la toma de decisiones.</p>
+            </article>
+            <article class="card area cool">
+              <h3>FinTech & Business</h3>
+              <p>Soluciones para finanzas, análisis de negocio y diseño de procesos.</p>
+            </article>
+            <article class="card area cool-2">
+              <h3>Marketing Digital</h3>
+              <p>Estrategia, contenido y crecimiento digital para marcas.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="empresas" class="section light">
+        <div class="container">
+          <h2>Empresas con convenios</h2>
+          <div class="partners">
+            <div class="partner">DataLabs</div>
+            <div class="partner">FinTech Hub</div>
+            <div class="partner">Creative Agency</div>
+            <div class="partner">GreenEnergy</div>
+            <div class="partner">HealthCo</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="certificaciones" class="section">
+        <div class="container">
+          <h2>Certificaciones y reconocimientos</h2>
+          <div class="cert-grid">
+            <div class="cert card">Sello Universitario de Prácticas</div>
+            <div class="cert card">Acreditación de Empleabilidad 2024</div>
+            <div class="cert card">Mejor Plataforma Estudiantil 2023</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="estadisticas" class="section stats">
+        <div class="container">
+          <h2>Impacto en números</h2>
+          <div class="stats-grid">
+            <div class="stat card">
+              <h3 class="num" data-target="1240">0</h3>
+              <p>Estudiantes colocados</p>
+            </div>
+            <div class="stat card">
+              <h3 class="num" data-target="320">0</h3>
+              <p>Empresas asociadas</p>
+            </div>
+            <div class="stat card">
+              <h3 class="num" data-target="87">0</h3>
+              <p>Tasa de éxito (%)</p>
+            </div>
+            <div class="stat card">
+              <h3 class="num" data-target="15">0</h3>
+              <p>Programas certificados</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section cta-quote">
+        <div class="container">
+          <div class="cta-card card">
+            <h2>¿Listo para dar tu primer paso?</h2>
+            <p class="muted">Únete como estudiante o publica oportunidades en tu empresa. Con PrimerPaso acortas la distancia entre talento y trabajo.</p>
+            <div class="cta-row">
+              <a class="btn warm" href="../login/login.html">Soy estudiante</a>
+              <a class="btn cool ghost" href="#empresas">Soy empresa</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="lp-footer">
+      <div class="container">
+        <div class="foot-grid">
+          <div>
+            <strong>PrimerPaso.com</strong>
+            <p class="muted">TokaTech© 2025. Todos los derechos reservados.</p>
+          </div>
+          <div class="muted">Contacto: hola@tokatech.com</div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="main.js"></script>
+  </body>
+</html>

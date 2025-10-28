@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Talent Bridge — Bolsa de Trabajo Estudiantil</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container header-inner">
+        <div class="logo">Primer<span>Paso.com</span></div>
+        <nav class="nav">
+          <button class="btn ghost">Explorar</button>
+          <button class="btn ghost">Empresas</button>
+          <button class="btn primary">Publicar Oferta</button>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container main-grid">
+      <aside class="sidebar">
+        <div class="card profile-card">
+          <div class="avatar">AB</div>
+          <h3>Ana B.</h3>
+          <p class="muted">Estudiante de Ingeniería — U. Nacional</p>
+          <p class="small">Buscando prácticas de frontend y UX.</p>
+          <div class="meta">
+            <span>Disponibilidad: Inmediata</span>
+          </div>
+          <button class="btn full primary">Editar perfil</button>
+        </div>
+
+        <div class="card stats">
+          <h4>Encuentra ofertas</h4>
+          <ul>
+            <li><strong>120</strong> Ofertas activas</li>
+            <li><strong>45</strong> Empresas</li>
+            <li><strong>30</strong> Remotas</li>
+          </ul>
+        </div>
+      </aside>
+
+      <section class="feed">
+        <div class="hero card">
+          <h1>Bolsa de trabajo para estudiantes</h1>
+          <p class="muted">Ofertas, prácticas y becas pensadas para estudiantes universitarios.</p>
+          <div class="search-row">
+            <input id="searchInput" type="search" placeholder="Buscar: título, empresa o ubicación" />
+            <select id="filterLocation">
+              <option value="">Cualquier lugar</option>
+              <option>Remoto</option>
+              <option>Presencial</option>
+            </select>
+            <button id="searchBtn" class="btn primary">Buscar</button>
+          </div>
+        </div>
+
+        <div id="jobsList" class="jobs-list">
+          <!-- Las ofertas se renderizan aquí desde js -->
+        </div>
+      </section>
+
+      <aside class="aside-right">
+        <div class="card suggestions">
+          <h4>Empresas destacadas</h4>
+          <ul>
+            <li>DataLabs</li>
+            <li>Creative Agency</li>
+            <li>FinTech Hub</li>
+          </ul>
+        </div>
+
+        <div class="card tips">
+          <h4>Consejos rápidos</h4>
+          <ol>
+            <li>Completa tu perfil al 100%.</li>
+            <li>Adjunta tu CV en PDF.</li>
+            <li>Configura alertas por email.</li>
+          </ol>
+        </div>
+      </aside>
+    </main>
+
+    <!-- Modal simple -->
+    <div id="modal" class="modal hidden">
+      <div class="modal-content">
+        <button id="closeModal" class="modal-close">✕</button>
+        <div id="modalBody"></div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© <strong>TokaTech</strong> — Bolsa de trabajo para estudiantes. Diseñado con paleta moderna y accesible.</p>
+      </div>
+    </footer>
+
+    <script src="js/app.js" defer></script>
+  </body>
+</html>
